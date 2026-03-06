@@ -62,12 +62,12 @@ public class ProductService {
     }
 
 
-    public List<Product> findByPriceRange(double startPrice, double endPrice) {
-        if (startPrice<0 || endPrice < 0) {
+    public List<Product> findByPriceRange(double min, double max) {
+        if (min <0 || max < 0) {
             throw new InvalidPriceRangeException("Price cannot be negative");
         }
 
-        if (startPrice > endPrice) {
+        if (min > max) {
             throw new InvalidPriceRangeException("Start price cannot be greater than end price");
         }
 
@@ -75,7 +75,7 @@ public class ProductService {
         List<Product> productsByRange = new ArrayList<>();
 
         for (Product product : products.values()) {
-            if (product.getPrice() >= startPrice && product.getPrice() <= endPrice) {
+            if (product.getPrice() >= min && product.getPrice() <= max) {
                 productsByRange.add(product);
             }
 

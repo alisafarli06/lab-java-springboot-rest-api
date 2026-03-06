@@ -16,7 +16,7 @@ import java.util.List;
 public class ProductController {
 
     private final ProductService productService;
-    private static final String API_KEY= "12345";
+    private static final String API_KEY= "123456";
 
     public ProductController(ProductService productService) {
         this.productService = productService;
@@ -34,8 +34,8 @@ public class ProductController {
         @RequestHeader(value = "API-Key") String apiKey,
         @RequestParam(required = false) String name,
         @RequestParam(required = false) String category,
-        @RequestParam(required = false) Double startPrice,
-        @RequestParam(required = false) Double endPrice){
+        @RequestParam(required = false) Double min,
+        @RequestParam(required = false) Double max){
 
 
 
@@ -52,8 +52,8 @@ public class ProductController {
             return ResponseEntity.ok(productService.findByCategory(category));
         }
 
-        if(startPrice!=null && endPrice!=null){
-            return ResponseEntity.ok(productService.findByPriceRange(startPrice, endPrice));
+        if(min!=null && max!=null){
+            return ResponseEntity.ok(productService.findByPriceRange(min, max));
         }
 
         return ResponseEntity.ok(productService.findAll());
