@@ -1,11 +1,12 @@
 package com.ironhack.labrestapi.model;
 
-import jakarta.validation.constraints.NegativeOrZero;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
 public class Product {
+    private Long id;
+
 
     @NotBlank(message = "Product name cannot be blank")
     @Size(min = 3, max = 100, message = "Product name must be between 3 and 100 characters")
@@ -15,18 +16,28 @@ public class Product {
     private double price;
 
     @NotBlank(message = "Category cannot be blank")
-    private  String  category;
+    private String category;
 
     @Positive(message = "Quantity must be greater than zero")
     private int quantity;
 
-    public Product() {}
+    public Product() {
+    }
 
-    public Product(String name, double price, String category, int quantity) {
+    public Product(Long id, String name, double price, String category, int quantity) {
+        this.id = id;
         this.name = name;
         this.price = price;
         this.category = category;
         this.quantity = quantity;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

@@ -6,6 +6,8 @@ import jakarta.validation.constraints.NotBlank;
 
 public class Customer {
 
+    private Long id;
+
     @NotBlank(message = "Customer name cannot be blank")
     private String name;
 
@@ -19,14 +21,25 @@ public class Customer {
     @NotBlank(message = "Address cannot be blank")
     private String address;
 
-    public Customer() {}
+    public Customer() {
+    }
 
-    public Customer(String name, String email, int age, String address) {
+    public Customer(Long id, String name, String email, int age, String address) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.age = age;
         this.address = address;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
 
     public String getName() {
         return name;
